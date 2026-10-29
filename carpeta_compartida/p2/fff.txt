@@ -1,0 +1,2 @@
+>>> print(777)
+>>> %history -o -p -f fff.txt

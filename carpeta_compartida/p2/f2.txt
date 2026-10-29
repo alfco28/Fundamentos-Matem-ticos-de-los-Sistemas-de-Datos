@@ -1,0 +1,11 @@
+import sys
+sys.setrecursionlimit(5000)
+def factorial(n):
+    if n==0:
+        return 1
+    else:
+        return factorial(n-1)*n
+factorial(5)
+120
+%history -o -p -f f1.txt
+%history -o -f f2.txt
