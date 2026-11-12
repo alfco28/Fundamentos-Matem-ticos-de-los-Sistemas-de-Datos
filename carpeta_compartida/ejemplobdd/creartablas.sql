@@ -1,13 +1,14 @@
 PRAGMA foreign_keys=ON;
 
 .print 'Borramos todas las tablas'
+drop table if exists matriculas;
 drop table if exists grupos;
 drop table if exists departamentos;
 drop table if exists aulas;
 drop table if exists profesores;
-drop table if exists T1;
+drop table if exists t1;
+drop table if exists t2;
 drop table if exists asignaturas;
-drop table if exists matriculas;
 drop table if exists alumnos;
 
 .print 'Creamos la tabla alumnos'
@@ -17,7 +18,7 @@ CREATE TABLE alumnos(
     fechanac DATE, 
     direccion VARCHAR(40), 
     provincia VARCHAR(20), 
-    beca CHAR(2)
+    beca CHAR(2) default 'no' check (beca in ('sí','no'))
 );
 
 .print
@@ -100,27 +101,55 @@ CREATE table departamentos(
     iddep varchar(5) PRIMARY KEY NOT NULL,
     nombre varchar(50) NOT NULL,
     dniDirector char(8),
-    foreign key (dniDirector) references profesores(NRP)
+    foreign key (dniDirector) references profesores(NRP) 
+        on delete set null
+        on update cascade
 );
+
+
 
 CREATE TABLE grupos(
     codgrupo CHAR(4) NOT NULL,   
-    codasig CHAR(4) NOT NULL,
+    codasig CHAR(4) not null,
     tipo CHAR(1) CHECK (tipo IN ('T','P')) NOT NULL,
     NRP CHAR(4),
     maxal INT CHECK (maxal BETWEEN 10 AND 150),
     PRIMARY KEY (codasig, codgrupo, tipo),
-    FOREIGN KEY (codasig) REFERENCES asignaturas(codasig),
+    FOREIGN KEY (codasig) REFERENCES asignaturas(codasig)
+        on delete cascade
+        on update cascade,
     FOREIGN KEY (NRP) REFERENCES profesores(NRP)
+        on delete set null
+        on update cascade
 );
 
+insert into alumnos values ('56','Juan','2003-01-05','calle 2','Cádiz','sí');
+insert into asignaturas values ('a11','asi11', 10 , 'op', 3);
+insert into profesores values('222','José', 'AS', '', '');
+
+insert into grupos values ('cg1','a11','T','222',25);
+insert into grupos values ('cg1','a11','P','222',25);
+
 CREATE TABLE matriculas(
-    codasig CHAR(4), 
-    codgrupo CHAR(4), 
-    tipo CHAR(1),
-    DNI CHAR(8) REFERENCES alumnos(DNI),
-    convocatoria DECIMAL, 
+    codasig CHAR(4) not null, 
+    codgrupo CHAR(4) not null, 
+    tipo CHAR(1) not null,
+    DNI CHAR(8) not null,
+    convocatoria DECIMAL not null, 
     calificacion DECIMAL,
     PRIMARY KEY (codasig, codgrupo, tipo, DNI, convocatoria),
     FOREIGN KEY(codasig, codgrupo, tipo) REFERENCES grupos(codasig,codgrupo,tipo)
+        on delete cascade
+        on update cascade,
+    foreign key(DNI) REFERENCES alumnos(DNI) 
+        on delete cascade 
+        on update cascade
 );
+
+create table t2(
+    a1 varchar,
+    a2 varchar
+);
+
+insert into t2 values('a',null);
+select * from t2 where a2 is null;
