@@ -147,9 +147,14 @@ CREATE TABLE matriculas(
 );
 
 create table t2(
-    a1 varchar,
+    a1 varchar default 'AAA',
     a2 varchar
 );
 
 insert into t2 values('a',null);
 select * from t2 where a2 is null;
+
+insert into t2(a2) values ('hola');
+
+.separator "," "\n"
+.import alumnos.txt alumnos

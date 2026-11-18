@@ -1,0 +1,2 @@
+dni1,Vicente,2000-05-15,calle nueva,Cádiz,no
+dni2,José,2005-01-07,calle 2,Sevilla,sí

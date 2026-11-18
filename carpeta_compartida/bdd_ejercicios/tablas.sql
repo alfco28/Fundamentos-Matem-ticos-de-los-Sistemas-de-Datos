@@ -149,5 +149,6 @@ insert into matriculas(codasig,codgrupo,tipo,DNI) values
 update profesores set NRP='abcde' where NRP='nrp1';
 */
 
-.import alumnos.txt alumnos
+.separator ";" "\n"
+.import alumnos.csv alumnos
 

@@ -1,0 +1,8 @@
+[{"DNI":"12345678","nomalum":"Juan Pérez","fechanac":"2000-01-02","direccion":"dir 1","provincia":"Cádiz","beca":"Sí"},
+{"DNI":"12345679","nomalum":"Pepe","fechanac":"2001-02-03","direccion":"dir1","provincia":"Cádiz","beca":"No"},
+{"DNI":"22345678","nomalum":"Antonio","fechanac":"2001-02-03","direccion":"dir1","provincia":"Cádiz","beca":"No"},
+{"DNI":"dni10","nomalum":"nombre1","fechanac":"2010-01-01","direccion":"d10","provincia":"Sevilla","beca":"Sí"},
+{"DNI":"dni11","nomalum":"nombre11","fechanac":"2005-02-03","direccion":"d11","provincia":"Málaga","beca":"no"},
+{"DNI":"","nomalum":"","fechanac":"","direccion":"","provincia":"","beca":""},
+{"DNI":"d1","nomalum":"Vicente","fechanac":null,"direccion":null,"provincia":null,"beca":"sí"},
+{"DNI":"d2","nomalum":"María","fechanac":null,"direccion":null,"provincia":null,"beca":"sí"}]
