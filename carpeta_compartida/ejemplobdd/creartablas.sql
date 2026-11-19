@@ -158,3 +158,5 @@ insert into t2(a2) values ('hola');
 
 .separator "," "\n"
 .import alumnos.txt alumnos
+
+

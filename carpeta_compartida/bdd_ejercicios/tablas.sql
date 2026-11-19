@@ -3,7 +3,7 @@ comprobación de regla de integridad referencial*/
 PRAGMA foreign_keys=ON;
 
 /* Cambiamos modo para visualizar las tablas*/
-.mode table
+.mode qbox
 /* Las tablas muestran el nombre de los atributos */
 .headers on 
 /* indicamos los separadores al hacer .import*/
@@ -114,15 +114,15 @@ CREATE TABLE aulas(
 .print "Orden INSERT:"
 /* Insertamos un alumno de prueba*/
 .print "Insertamos alumno de prueba"
-insert into alumnos values ('12345678','Juan Pérez','2000-01-02','dir 1','Cádiz','Sí');
+insert into alumnos values ('12345678','Juan','2000-01-02','dir 1','Cádiz','Sí');
 insert into alumnos values ('12345679','Pepe','2001-02-03','dir1','Cádiz','No'),('22345678','Antonio','2001-02-03','dir1','Cádiz','No');
 
 insert into asignaturas values ('ca1','Asignatura 1','6','op','3');
 insert into asignaturas values ('ca2','Asignatura 2','6','ob','4');
 
 insert into profesores values
-        ('nrp1','Pepe 1',NULL,NULL,NULL),
-        ('nrp2','Juan 1','AS',NULL,null);
+        ('nrp1','Pepe',NULL,NULL,'dep1'),
+        ('nrp2','Juan 1','AS',NULL,'dep2');
 
 insert into departamentos values
 	('dep1','nombre dep 1','nrp1'),
@@ -151,4 +151,7 @@ update profesores set NRP='abcde' where NRP='nrp1';
 
 .separator ";" "\n"
 .import alumnos.csv alumnos
+
+
+/*.read busquedas.sql*/
 
