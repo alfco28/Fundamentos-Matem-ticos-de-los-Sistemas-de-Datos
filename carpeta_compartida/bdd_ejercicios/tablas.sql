@@ -140,9 +140,21 @@ insert into matriculas values
 	('ca1','A','T','12345678','112345.1234','12345.1234');
 
 insert into aulas values('fc09','150');
+insert into aulas values('fc11','15');
+insert into aulas values('fc12','15');
 
 insert into matriculas(codasig,codgrupo,tipo,DNI) values
 	('ca1','A','P','12345679');
+
+
+insert into grupos values
+	('A','ca2','T','nrp1','30');
+insert into matriculas(codasig,codgrupo,tipo,DNI) values
+	('ca2','A','T','12345679');
+
+insert into matriculas(codasig,codgrupo,tipo,DNI) values
+	('ca2','A','T','22345678');
+
 
 .print "Orden UPDATE:"
 /*
