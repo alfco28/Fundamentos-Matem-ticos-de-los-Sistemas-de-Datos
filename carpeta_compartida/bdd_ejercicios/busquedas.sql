@@ -32,3 +32,40 @@ select dni from alumnos where dni not in (select dni from matriculas);
 
 select t1.codaula from aulas t1 where not exists 
     (select * from aulas t2 where t2.capacidad<t1.capacidad and t1.codaula<>t2.codaula);
+
+select nomalum,t3.dni,t3.calificacion from 
+alumnos,
+(select t1.dni,t1.calificacion from matriculas t1 where t1.codasig='ca1' and t1.calificacion is not null and
+    not exists 
+        (select * from matriculas t2 where t2.codasig='ca1' and  
+        t2.calificacion < t1.calificacion)) t3
+    where alumnos.dni=t3.dni;
+
+
+
+create temp view taux3 as 
+    select t1.dni,t1.calificacion from matriculas t1 
+        where t1.codasig='ca1' and 
+            t1.calificacion is not null 
+            and not exists 
+                (select * from matriculas t2 where t2.codasig='ca1' and  
+                t2.calificacion < t1.calificacion);
+
+select nomalum,taux3.dni,taux3.calificacion from alumnos, taux3
+    where alumnos.dni=taux3.dni;
+
+drop view taux3;
+
+
+create temp view t1 as 
+    select codasig from asignaturas where curso='3';
+
+select DISTINCT dni from matriculas where codasig in t1;
+
+drop view t1;
+
+select dni,nomalum from alumnos union select nrp,nomprof from profesores;
+
+select dni,nomalum from alumnos INTERSECT select nrp,nomprof from profesores;
+
+select dni,nomalum from alumnos INTERSECT select nrp,nomprof from profesores;
