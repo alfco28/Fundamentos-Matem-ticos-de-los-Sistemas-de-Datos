@@ -69,3 +69,46 @@ select dni,nomalum from alumnos union select nrp,nomprof from profesores;
 select dni,nomalum from alumnos INTERSECT select nrp,nomprof from profesores;
 
 select dni,nomalum from alumnos INTERSECT select nrp,nomprof from profesores;
+
+drop table if exists tabla1;
+drop table if exists tabla2;
+create table tabla1(
+    a1 integer,
+    a2 char(1)
+);
+
+create table tabla2(
+    a2 char(1)
+);
+insert into tabla1 values (1,'a'),(2,'b'),(2,'a')
+    ,(1,'b'),(2,'c'),(2,'d'),(1,'e');
+
+insert into tabla2 values ('a'),('b'),('c');
+
+/*
+Asignaturas en las que están matriculados todos los alumnos de la provincia de Cádiz
+*/
+create temp view taux1 as 
+    select codasig,dni from matriculas;
+create temp view taux2 as 
+    select * from alumnos where provincia='Cádiz';
+
+SELECT DISTINCT codasig from taux1 T1 WHERE 
+    NOT EXISTS 
+        (SELECT dni FROM taux2 WHERE
+            NOT EXISTS 
+                (SELECT * FROM taux1 T3 WHERE taux1.codasig=T3.codasig AND taux2.dni=T3.dni)
+    );
+drop view if exists taux1;
+drop view if exists taux2;
+
+create table tabla3(
+    a1 float,
+    a2 float
+);
+
+insert into tabla3 values (1,2),(5,7),(3,-2);
+
+select codaula,capacidad from aulas where capacidad=(select min(capacidad) from aulas);
+
+select avg(pow(capacidad,2))-pow(avg(capacidad),2) from aulas;
