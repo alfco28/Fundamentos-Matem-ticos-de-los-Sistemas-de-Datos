@@ -112,3 +112,5 @@ insert into tabla3 values (1,2),(5,7),(3,-2);
 select codaula,capacidad from aulas where capacidad=(select min(capacidad) from aulas);
 
 select avg(pow(capacidad,2))-pow(avg(capacidad),2) from aulas;
+
+select count(*) from (select distinct nomalum from alumnos) t1;

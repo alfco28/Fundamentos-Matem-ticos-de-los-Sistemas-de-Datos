@@ -121,8 +121,8 @@ insert into asignaturas values ('ca1','Asignatura 1','6','op','3');
 insert into asignaturas values ('ca2','Asignatura 2','6','ob','4');
 
 insert into profesores values
-        ('nrp1','Pepe',NULL,NULL,'dep1'),
-        ('nrp2','Juan 1','AS',NULL,'dep2');
+        ('nrp1','Pepe','TU','Geometría','dep1'),
+        ('nrp2','Juan 1','AS','Álgebra','dep2');
 
 insert into departamentos values
 	('dep1','nombre dep 1','nrp1'),
