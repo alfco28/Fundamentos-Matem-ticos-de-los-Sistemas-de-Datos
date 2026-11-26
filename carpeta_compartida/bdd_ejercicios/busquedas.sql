@@ -114,3 +114,25 @@ select codaula,capacidad from aulas where capacidad=(select min(capacidad) from 
 select avg(pow(capacidad,2))-pow(avg(capacidad),2) from aulas;
 
 select count(*) from (select distinct nomalum from alumnos) t1;
+
+create temp view taux1 as 
+    select dni,matriculas.codasig,creditos from matriculas,asignaturas
+        where matriculas.codasig=asignaturas.codasig;
+
+select dni,sum(creditos),count(*) num_asig_matriculadas from 
+    taux1 group by dni having sum(creditos)>=10;
+
+drop view taux1;
+
+
+
+create temp view taux2 AS
+    select * from matriculas where calificacion>=5;
+
+create temp view taux3 as
+    select count(*) naprob ,codasig from matriculas group by codasig;
+
+select * from taux3 where naprob = (select max(naprob) from taux3);
+
+drop view taux2;
+drop view taux3;
